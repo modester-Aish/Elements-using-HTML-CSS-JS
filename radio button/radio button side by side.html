@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Menu with Side-by-Side Text and Icon</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .menu {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    display: flex;
+    padding: 0.5rem;
+  }
+
+  .link {
+    position: relative;
+    width: 56px;
+    height: 50px;
+    border-radius: 8px;
+    margin: 0 6px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    color: #555;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition:
+      width 0.25s ease-in-out,
+      color 0.25s ease-in-out,
+      background-color 0.25s ease-in-out;
+  }
+
+  .link:hover,
+  .link:focus {
+    width: 140px;
+    color: #667eea;
+    background-color: #e6eaff;
+    outline: none;
+  }
+
+  .link-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    margin-left: 14px;
+    transition: color 0.3s ease;
+    color: inherit;
+    user-select: none;
+  }
+
+  .link-title {
+    white-space: nowrap;
+    margin-left: 12px;
+    opacity: 0;
+    transform: translateX(20px);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+    pointer-events: none;
+    color: inherit;
+  }
+
+  .link:hover .link-title,
+  .link:focus .link-title {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  .link:hover .link-icon,
+  .link:focus .link-icon {
+    color: #667eea;
+  }
+
+  /* Keyboard focus outline */
+  .link:focus-visible {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="menu" aria-label="Main navigation">
+  <a href="#" class="link" tabindex="0">
+    <span class="link-icon" aria-hidden="true">🏠</span>
+    <span class="link-title">Home</span>
+  </a>
+  <a href="#" class="link" tabindex="0">
+    <span class="link-icon" aria-hidden="true">🎮</span>
+    <span class="link-title">Games</span>
+  </a>
+  <a href="#" class="link" tabindex="0">
+    <span class="link-icon" aria-hidden="true">💬</span>
+    <span class="link-title">Chat</span>
+  </a>
+  <a href="#" class="link" tabindex="0">
+    <span class="link-icon" aria-hidden="true">🔍</span>
+    <span class="link-title">Search</span>
+  </a>
+  <a href="#" class="link" tabindex="0">
+    <span class="link-icon" aria-hidden="true">👤</span>
+    <span class="link-title">Profile</span>
+  </a>
+</nav>
+
+</body>
+</html>

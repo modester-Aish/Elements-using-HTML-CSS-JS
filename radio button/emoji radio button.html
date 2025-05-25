@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Attractive Emoji Hover Switch Radio Buttons</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .feedback {
+    display: flex;
+    gap: 28px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px 40px;
+    border-radius: 32px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    user-select: none;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .feedback label {
+    cursor: pointer;
+    font-size: 3.8rem;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 14px;
+    border-radius: 20px;
+    color: #cbd5e1aa;
+    position: relative;
+    width: 100px;
+    transition: color 0.3s ease, transform 0.35s cubic-bezier(0.645,0.045,0.355,1);
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.25));
+  }
+
+  .feedback input[type="radio"] {
+    display: none; /* hide native radio */
+  }
+
+  /* Container for emoji spans, stacking */
+  .emoji-container {
+    position: relative;
+    width: 1em;
+    height: 1em;
+    perspective: 600px;
+  }
+
+  .emoji-neutral,
+  .emoji-active {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition:
+      opacity 0.38s cubic-bezier(0.645,0.045,0.355,1),
+      transform 0.38s cubic-bezier(0.645,0.045,0.355,1),
+      filter 0.38s ease;
+    user-select: none;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    width: 1em;
+    height: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .emoji-neutral {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  }
+  .emoji-active {
+    opacity: 0;
+    transform: rotateY(180deg) scale(0.8);
+    filter: drop-shadow(0 0 10px rgba(255 255 255 / 0.8));
+  }
+
+  /* On hover show active emoji with flip effect */
+  label:hover .emoji-neutral {
+    opacity: 0;
+    transform: rotateY(-180deg) scale(0.85);
+  }
+  label:hover .emoji-active {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+    color: #60a5fa;
+  }
+
+  /* When selected show active emoji with flip effect */
+  input[type="radio"]:checked + .emoji-container .emoji-neutral {
+    opacity: 0;
+    transform: rotateY(-180deg) scale(0.85);
+  }
+  input[type="radio"]:checked + .emoji-container .emoji-active {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+    color: #60a5fa;
+    filter: drop-shadow(0 0 15px #3b82f6);
+  }
+
+  /* Label text */
+  input[type="radio"]:checked ~ .label-text {
+    color: #60a5fa;
+    font-weight: 800;
+    text-shadow: 0 0 8px #3b82f6;
+  }
+
+  .label-text {
+    font-size: 1.15rem;
+    margin-top: 8px;
+    font-weight: 600;
+    color: #cbd5e1cc;
+    transition: color 0.35s ease, font-weight 0.35s ease, text-shadow 0.35s ease;
+    white-space: nowrap;
+  }
+
+  /* Scale label on hover */
+  .feedback label:hover {
+    color: #60a5fa;
+    transform: translateY(-8px) scale(1.1);
+  }
+
+  /* Focus style */
+  input[type="radio"]:focus-visible + .emoji-container {
+    outline: 3px solid #2563eb;
+    outline-offset: 6px;
+    border-radius: 10px;
+  }
+
+  @media (max-width: 600px) {
+    .feedback {
+      gap: 18px;
+      padding: 20px 25px;
+    }
+    .feedback label {
+      width: 70px;
+      font-size: 3rem;
+      padding: 10px 8px;
+      margin-bottom: 4px;
+    }
+    .label-text {
+      font-size: 1rem;
+      margin-top: 6px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<form class="feedback" aria-label="Emoji feedback">
+  <label>
+    <input type="radio" name="feedback" value="angry" />
+    <span class="emoji-container" aria-hidden="true">
+      <span class="emoji-neutral">😐</span>
+      <span class="emoji-active" aria-label="Angry face">😠</span>
+    </span>
+    <span class="label-text">Angry</span>
+  </label>
+  <label>
+    <input type="radio" name="feedback" value="sad" />
+    <span class="emoji-container" aria-hidden="true">
+      <span class="emoji-neutral">😐</span>
+      <span class="emoji-active" aria-label="Sad face">😞</span>
+    </span>
+    <span class="label-text">Sad</span>
+  </label>
+  <label>
+    <input type="radio" name="feedback" value="ok" />
+    <span class="emoji-container" aria-hidden="true">
+      <span class="emoji-neutral">😐</span>
+      <span class="emoji-active" aria-label="Neutral face">😐</span>
+    </span>
+    <span class="label-text">Okay</span>
+  </label>
+  <label>
+    <input type="radio" name="feedback" value="good" />
+    <span class="emoji-container" aria-hidden="true">
+      <span class="emoji-neutral">😐</span>
+      <span class="emoji-active" aria-label="Good face">🙂</span>
+    </span>
+    <span class="label-text">Good</span>
+  </label>
+  <label>
+    <input type="radio" name="feedback" value="happy" />
+    <span class="emoji-container" aria-hidden="true">
+      <span class="emoji-neutral">😐</span>
+      <span class="emoji-active" aria-label="Happy face">😄</span>
+    </span>
+    <span class="label-text">Happy</span>
+  </label>
+</form>
+
+</body>
+</html>
+
